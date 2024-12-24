@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="kitdi_kittykitty.png">
+<SubTexture name="kitdi_kittykitty talking0000" x="552" y="0" width="552" height="516" frameX="-159" frameY="-329" frameWidth="1000" frameHeight="1000" />
+<SubTexture name="kitdi_kittykitty talking0001" x="0" y="0" width="552" height="516" frameX="-159" frameY="-329" frameWidth="1000" frameHeight="1000" />
+</TextureAtlas>
