@@ -2369,22 +2369,6 @@ class PlayState extends MusicBeatState
 			case 'Play Sound':
 				if(flValue2 == null) flValue2 = 1;
 				FlxG.sound.play(Paths.sound(value1), flValue2);
-
-		case 'Flash black': //Good job, me, you optimized the code and made it actually work, I wanna kill myself
-			if (flValue1 == null) flValue1 = 0.15;
-	    	if (flValue2 == null) flValue2 = 0;
-
-			var blackOverlay = new FlxSprite(0, 0);
-			blackOverlay.makeGraphic(FlxG.width, FlxG.height, 0xFF000000);
-			blackOverlay.scrollFactor.set(0, 0); // No parallax effect
-
-            // Add overlay to the state
-            add(blackOverlay);
-			
-			FlxTween.tween(blackOverlay, {alpha : 0}, flValue2, {ease : FlxEase.quadOut, startDelay: flValue1, onComplete: function(tween:FlxTween){
-				remove(blackOverlay);
-			}});
-			
 	  case 'Resize Window':
 		//Value 1: Width, Value 2: Height
 		if (flValue1 == null) flValue1 = 1280;
@@ -2404,6 +2388,7 @@ class PlayState extends MusicBeatState
                 Application.current.window.height = Std.int(windowSize.h);
             },
         });
+
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
 		callOnScripts('onEvent', [eventName, value1, value2, strumTime]);
 	}
