@@ -2384,34 +2384,7 @@ class PlayState extends MusicBeatState
 			FlxTween.tween(blackOverlay, {alpha : 0}, flValue2, {ease : FlxEase.quadOut, startDelay: flValue1, onComplete: function(tween:FlxTween){
 				remove(blackOverlay);
 			}});
-
-        case 'Zoom In GameCam': //I hate this stupid piece of code, it took me 3 days to figure out
-			if (flValue1 == null) flValue1 = 1.5;
-			if (flValue2 == null) flValue2 = 0.5;
 			
-			defaultCamZoom = flValue1;
-			FlxTween.tween(FlxG.camera, {zoom : flValue1}, flValue2, {ease : FlxEase.quadInOut});
-			
-		case 'GuitarHero': //I hate this stupid piece of code, it took me 3 days to figure out
-		//if (flValue1 == null) flValue1 = true;
-
-		var highWay:FlxSprite = new FlxSprite(0).loadGraphic(Paths.image('Guitar/fretboard'));
-		highWay.antialiasing = ClientPrefs.data.antialiasing;
-		highWay.scrollFactor.set(0, 0);
-		highWay.alpha = 0;
-		if (ClientPrefs.data.middleScroll)
-		{
-			highWay.x = STRUM_X_MIDDLESCROLL;
-			highWay.y = 0;
-		}
-		else
-		{
-			highWay.x = STRUM_X;
-			highWay.y = 0;
-		}
-      add(highWay);
-
-	  FlxTween.tween(highWay, { alpha: 1 }, 0.2, { ease: FlxEase.quadOut });
 	  case 'Resize Window':
 		//Value 1: Width, Value 2: Height
 		if (flValue1 == null) flValue1 = 1280;
@@ -2431,8 +2404,6 @@ class PlayState extends MusicBeatState
                 Application.current.window.height = Std.int(windowSize.h);
             },
         });
-	case 'Discord User Message':
-
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
 		callOnScripts('onEvent', [eventName, value1, value2, strumTime]);
 	}

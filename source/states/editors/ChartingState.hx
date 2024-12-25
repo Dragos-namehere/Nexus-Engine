@@ -87,11 +87,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
 		['Flash black', "show only black on the screen, Include notes,\nValue 1: Time it stays on the screen, \nleave blank for 0.01 seconds, \nValue 2: How much it takes for it to fade out, \nLeave blank or 0 for no fade out"],
-		['Zoom In GameCam', "Value 1: The zoom amount, \nValue 2: time to zoom in"],
-		['GuitarHero', "Value 1: Add or Remove, (true, false)"],
 		['Resize Window', "Value 1: Width Value, \nValue 2: Height Value \n   Leave blank to change it back to normal"],
-		['Position Window', "Value 1: X Value, \nValue 2: Y Value \n doesn't work for now"],
-		['Discord User Message', "Value 1: The Message, \nValue 2: bf (player) or dad (Opponent)"]
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor
