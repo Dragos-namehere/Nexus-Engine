@@ -1,4 +1,5 @@
 # Nexus-Engine
+This engine was originally made for the [Dave and Bambi: Nexus edition](https://gamebanana.com/mods/564377), now it is an actual engine
 Nexus Engine is a modified version of Psych Engine
 here is the readme of psych engine, it should work
 
