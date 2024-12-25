@@ -23,7 +23,7 @@ same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, 
 * Dragos - Developer, Main programmer
 * Snare - Artist, Musician
 
-#Psych engine Developers
+## Psych engine Developers
 * Shadow Mario - Head Developer, Programmer.
 * Riveren - Main Artist.
 
