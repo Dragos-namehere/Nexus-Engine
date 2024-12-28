@@ -74,40 +74,6 @@ class TitleState extends MusicBeatState
 	override public function create():Void
 	{
 
-		var bpm:Float = 120;
-
-		var zoomAmount:Float = 0.01;
-		
-		var interval:Float = 60 / bpm;
-		
-		var originalZoom:Float = FlxG.camera.zoom;
-		
-		function applyZoom():Void {
-		
-		var targetZoom:Float = originalZoom + zoomAmount;
-		
-		FlxTween.tween(FlxG.camera, { zoom: targetZoom }, 0.05, { ease: FlxEase.linear });
-		
-		var returnTimer:FlxTimer = new FlxTimer();
-		
-		returnTimer.start(0.1, function(timer:FlxTimer) {
-		
-		FlxTween.tween(FlxG.camera, { zoom: originalZoom }, 0.05, { ease: FlxEase.linear });
-		
-		});
-		
-		}
-		
-		var zoomTimer:FlxTimer = new FlxTimer();
-		
-		zoomTimer.start(interval, function(timer:FlxTimer) {
-		
-		applyZoom();
-
-		
-        }, 0);
-
-
 		Paths.clearStoredMemory();
 		super.create();
 		Paths.clearUnusedMemory();
@@ -550,6 +516,10 @@ class TitleState extends MusicBeatState
 			var money:Alphabet = new Alphabet(0, 0, textArray[i], true);
 			money.screenCenter(X);
 			money.y += (i * 60) + 200 + offset;
+
+			FlxG.camera.zoom = 1.2;
+			FlxTween.tween(FlxG.camera, {zoom: 1}, 0.1, {ease: FlxEase.backOut});
+
 			if(credGroup != null && textGroup != null)
 			{
 				credGroup.add(money);
@@ -566,11 +536,14 @@ class TitleState extends MusicBeatState
 			coolText.y += (textGroup.length * 60) + 200 + offset;
 			credGroup.add(coolText);
 			textGroup.add(coolText);
+			FlxG.camera.zoom = 1.2;
+			FlxTween.tween(FlxG.camera, {zoom: 1}, 0.1, {ease: FlxEase.backOut});
 		}
 	}
 
 	function deleteCoolText()
 	{
+		FlxTween.tween(FlxG.camera, {zoom: 1}, 0.2, {ease: FlxEase.sineInOut});
 		while (textGroup.members.length > 0)
 		{
 			credGroup.remove(textGroup.members[0], true);
@@ -612,8 +585,6 @@ class TitleState extends MusicBeatState
 				case 2:
 					createCoolText(['Nexus Engine by'], 40);
 				case 4:
-					if(FlxG.camera != null)
-						FlxG.camera.shake(0.02, 0.1);
 					addMoreText('Dragos', 40);
 					addMoreText('Snare', 40);
 					addMoreText('With Help from Psych engine', 40);
@@ -622,8 +593,6 @@ class TitleState extends MusicBeatState
 				case 6:
 					createCoolText(['Not associated', 'with'], -40);
 				case 8:
-					if(FlxG.camera != null)
-						FlxG.camera.shake(0.01, 0.1);
 					addMoreText('newgrounds', -40);
 					ngSpr.visible = true;
 				case 9:
@@ -637,19 +606,13 @@ class TitleState extends MusicBeatState
 					deleteCoolText();
 				case 14:
 					addMoreText('wat');
-					FlxG.sound.play(Paths.sound("what"), 1, true);
 				case 15:
 					addMoreText('da');
-					FlxG.sound.play(Paths.sound("da"), 1, true);
 				case 16:
 					addMoreText('dog'); // credTextShit.text += '\nFunkin';
-					FlxG.sound.play(Paths.sound("dog"), 1, true);
 				case 17:
 					//deleteCoolText();
-					if(FlxG.camera != null)
-						FlxG.camera.shake(0.01, 0.1);
 					addMoreText('DOIN?'); // credTextShit.text += '\nFunkin';
-					FlxG.sound.play(Paths.sound("doin"), 1, true);
 				case 18:
 				    deleteCoolText();
 				case 19:

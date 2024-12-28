@@ -131,13 +131,13 @@ class MainMenuState extends MusicBeatState
 		rectangleThingy = new FlxSprite(0).loadGraphic(Paths.image('mainmenu/Rectangle'));
 		rectangleThingy.antialiasing = ClientPrefs.data.antialiasing;
 		rectangleThingy.scrollFactor.set();
-		rectangleThingy.setGraphicSize(Std.int(rectangleThingy.width));
+		rectangleThingy.setGraphicSize(Std.int(rectangleThingy.width), Std.int(rectangleThingy.height * 1.15));
 		rectangleThingy.screenCenter(X);
-		rectangleThingy.y = -1000;
+		rectangleThingy.y = -1200;
 		rectangleThingy.angle = 90;
 		rectangleThingy.updateHitbox();
 		add(rectangleThingy);
-		FlxTween.tween(rectangleThingy, { y: 0, angle: 0 }, 0.5, { ease: FlxEase.backOut, startDelay: 0.5 });
+		FlxTween.tween(rectangleThingy, { y: -30, angle: 0 }, 0.5, { ease: FlxEase.backOut, startDelay: 0.5 });
 
 		arrowDown = new FlxSprite(0).loadGraphic(Paths.image('mainmenu/ArrowDown'));
 		arrowDown.antialiasing = ClientPrefs.data.antialiasing;
@@ -189,7 +189,7 @@ class MainMenuState extends MusicBeatState
 
 		for (num => option in optionShit)
 		{
-			var item:FlxSprite = createMenuItem(option, (num * 300) + 100, 310);
+			var item:FlxSprite = createMenuItem(option, (num * 300) + 100, 330);
 			if (optionShit.length >= 4)
 			{
 				item.x = (num * 250) + 100;
@@ -246,7 +246,7 @@ class MainMenuState extends MusicBeatState
 		var menuItem:FlxSprite = new FlxSprite(x, y).loadGraphic(Paths.image('mainmenu/menu_$name'));
 		menuItem.y = -800;
 		menuItem.angle = 90;
-		menuItem.setGraphicSize(Std.int(menuItem.width / 4.5), Std.int(menuItem.height / 4.5));
+		menuItem.setGraphicSize(Std.int(menuItem.width / 4), Std.int(menuItem.height / 4));
 		/*
 		menuItem.frames = Paths.getSparrowAtlas('mainmenu/menu_$name');
 		menuItem.animation.addByPrefix('idle', '$name idle', 24, true);
@@ -564,7 +564,7 @@ class MainMenuState extends MusicBeatState
 
 		//FlxTween.tween(selectedItem, {angle : 45}, 0.3, {ease : FlxEase.backOut });
 
-		FlxTween.tween(arrowDown, {x : selectedItem.x + 25}, 0.3, { ease: FlxEase.quadInOut });
+		FlxTween.tween(arrowDown, {x : selectedItem.x + 30}, 0.3, { ease: FlxEase.sineInOut });
 
 		//camFollow.x = camFollow.x + (selectedItem.x / 100);
 	}
