@@ -3,12 +3,16 @@ package substates;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
+import backend.Conductor;
 
 import flixel.util.FlxStringUtil;
 
 import states.StoryMenuState;
 import states.FreeplayState;
 import options.OptionsState;
+
+import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxGridOverlay;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -31,6 +35,8 @@ class PauseSubState extends MusicBeatSubstate
 
 	var missingTextBG:FlxSprite;
 	var missingText:FlxText;
+
+	var grid:FlxBackdrop;
 
 	public static var songName:String = null;
 
@@ -73,6 +79,15 @@ class PauseSubState extends MusicBeatSubstate
 		pauseMusic.play(false, FlxG.random.int(0, Std.int(pauseMusic.length / 2)));
 
 		FlxG.sound.list.add(pauseMusic);
+
+		
+		grid = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x33FFFFFF, 0x0));
+		grid.velocity.set(Conductor.bpm / 1.5, Conductor.bpm / 1.5);
+		grid.scrollFactor.set(0.25, 0.25);
+		grid.alpha = 0;
+		grid.y = -1500;
+		FlxTween.tween(grid, {alpha: 1, y: 0}, 1, {ease: FlxEase.quadInOut});
+		add(grid);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
 		bg.scale.set(FlxG.width, FlxG.height);
@@ -172,7 +187,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		if(controls.BACK)
 		{
-			close();
+			closeThemMenu(true);
 			return;
 		}
 
@@ -270,7 +285,7 @@ class PauseSubState extends MusicBeatSubstate
 			switch (daSelected)
 			{
 				case "Resume":
-					close();
+					closeThemMenu(true);
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;
 					deleteSkipTimeText();
@@ -297,10 +312,10 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.instance.clearNotesBefore(curTime);
 							PlayState.instance.setSongTime(curTime);
 						}
-						close();
+						closeThemMenu(true);
 					}
 				case 'End Song':
-					close();
+					closeThemMenu(true);
 					PlayState.instance.notes.clear();
 					PlayState.instance.unspawnNotes = [];
 					PlayState.instance.finishSong(true);
@@ -342,6 +357,22 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.camera.followLerp = 0;
 			}
 		}
+	}
+
+	function closeThemMenu(closeTheMenu)
+	{
+		for (itemmenuthingyihatemyself in grpMenuShit)
+		{
+			FlxTween.tween(itemmenuthingyihatemyself, {y: -1200}, 0.5, {ease: FlxEase.backIn, startDelay: 0.1 + idd*0.1});
+			idd++;
+		}
+
+		FlxTween.tween(grid, {alpha: 0, y: 1200}, 0.5, {ease: FlxEase.backIn, startDelay: 0.3, onComplete: function(tween:FlxTween){
+			if (closeTheMenu)
+			{
+				close();
+			} 
+		}});
 	}
 
 	function deleteSkipTimeText()
@@ -408,9 +439,11 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		for (num => str in menuItems) {
-			var item = new Alphabet(90, 320, Language.getPhrase('pause_$str', str), true);
+			var item = new Alphabet(90, 320, Language.getPhrase('pause_$str', str), true); //640
 			item.isMenuItem = true;
+			item.screenCenter(X);
 			item.targetY = num;
+			item.changeX = false;
 			grpMenuShit.add(item);
 
 			if(str == 'Skip Time')
