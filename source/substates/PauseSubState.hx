@@ -187,7 +187,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		if(controls.BACK)
 		{
-			closeThemMenu(true);
+			close();
 			return;
 		}
 
@@ -285,7 +285,7 @@ class PauseSubState extends MusicBeatSubstate
 			switch (daSelected)
 			{
 				case "Resume":
-					closeThemMenu(true);
+					close();
 				case 'Change Difficulty':
 					menuItems = difficultyChoices;
 					deleteSkipTimeText();
@@ -312,10 +312,10 @@ class PauseSubState extends MusicBeatSubstate
 							PlayState.instance.clearNotesBefore(curTime);
 							PlayState.instance.setSongTime(curTime);
 						}
-						closeThemMenu(true);
+						close();
 					}
 				case 'End Song':
-					closeThemMenu(true);
+					close();
 					PlayState.instance.notes.clear();
 					PlayState.instance.unspawnNotes = [];
 					PlayState.instance.finishSong(true);
@@ -357,22 +357,6 @@ class PauseSubState extends MusicBeatSubstate
 					FlxG.camera.followLerp = 0;
 			}
 		}
-	}
-
-	function closeThemMenu(closeTheMenu)
-	{
-		for (itemmenuthingyihatemyself in grpMenuShit)
-		{
-			FlxTween.tween(itemmenuthingyihatemyself, {y: -1200}, 0.5, {ease: FlxEase.backIn, startDelay: 0.1 + idd*0.1});
-			idd++;
-		}
-
-		FlxTween.tween(grid, {alpha: 0, y: 1200}, 0.5, {ease: FlxEase.backIn, startDelay: 0.3, onComplete: function(tween:FlxTween){
-			if (closeTheMenu)
-			{
-				close();
-			} 
-		}});
 	}
 
 	function deleteSkipTimeText()
