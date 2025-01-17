@@ -5,22 +5,26 @@ Nexus Engine is a modified version of Psych Engine
 
 
 # Compilation:
-not that hard, use the same ones as psych engine 1.0 please, PLEEEEEASSSSSSSSSSSSSSEEEEEEEEEEEEEEE
+not that hard, use the same ones as psych engine 1.0 please, PLEEEEEASSSSSSSSSSSSSSEEEEEEEEEEEEEE
 
+Here it is: [the Build Instructions of Psych Engine 1.0](./BUILDING.md)
 
-## Installation:
+## Customization In Source Code:
 
-Refer to [the Build Instructions](./BUILDING.md)
+if you wish to disable things like *Lua Scripts* or *Video Cutscenes*, you can read over to [Project.xml](./Project.xml)
 
-## Customization:
+inside [Project.xml](./Project.xml), you will find several variables to customize Nexus Engine to your liking
 
-if you wish to disable things like *Lua Scripts* or *Video Cutscenes*, you can read over to `Project.xml`
+* If you are making a mod in source code, you would want to change the name of the window, as Nexus engine is kind of boring while the mod is made in source code
+for that you will have to head to line 5 or <app title="... there in the string, you would want to change the name of the window, if you also want to change the name of the app, like Nexusengine.exe
+you would want to change the file="" string, to your liking (remember, changing the name of the app like the memodyay.exe will result in a couple error if you did any changes to playstate.hx or pausesubstate, so first rename everything and then do all the coding)
 
-inside `Project.xml`, you will find several variables to customize Psych Engine to your liking
+*if you want to disable videos for some reason, delete the line that says 
+<define name="VIDEOS_ALLOWED...
 
-to start you off, disabling Videos should be simple, simply Delete the line `"VIDEOS_ALLOWED"` or comment it out by wrapping the line in XML-like comments, like this `<!-- YOUR_LINE_HERE -->`
+*would you really want to do this?????????
+if you want to change the window from landscape to portrait, change the lines: 52, 55, 58 I guess??..
 
-same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, this and other customization options are all available within the `Project.xml` file
 
 ## Credits:
 # Nexus Engine Developers
