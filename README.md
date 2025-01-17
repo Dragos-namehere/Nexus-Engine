@@ -19,10 +19,10 @@ inside [Project.xml](./Project.xml), you will find several variables to customiz
 for that you will have to head to line 5 or <app title="... there in the string, you would want to change the name of the window, if you also want to change the name of the app, like Nexusengine.exe
 you would want to change the file="" string, to your liking (remember, changing the name of the app like the memodyay.exe will result in a couple error if you did any changes to playstate.hx or pausesubstate, so first rename everything and then do all the coding)
 
-*if you want to disable videos for some reason, delete the line that says 
+* if you want to disable videos for some reason, delete the line that says 
 <define name="VIDEOS_ALLOWED...
 
-*would you really want to do this?????????
+* would you really want to do this?????????
 if you want to change the window from landscape to portrait, change the lines: 52, 55, 58 I guess??..
 
 
