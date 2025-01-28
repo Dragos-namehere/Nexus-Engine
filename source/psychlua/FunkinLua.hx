@@ -12,6 +12,8 @@ import flixel.FlxBasic;
 import flixel.FlxObject;
 import flixel.FlxState;
 
+import lime.app.Application;
+
 #if (!flash && sys)
 import flixel.addons.display.FlxRuntimeShader;
 #end
@@ -602,6 +604,59 @@ class FunkinLua {
 		});
 		Lua_helper.add_callback(lua, "noteTweenDirection", function(tag:String, note:Int, value:Dynamic, duration:Float, ?ease:String = 'linear') {
 			return noteTweenFunction(tag, note, {direction: value}, duration, ease);
+		});
+		//Tween thingy but FOR WINDOW?!
+		Lua_helper.add_callback(lua, "doWindowTweenX", function(value:Dynamic, duration:Float, ?ease:String = 'linear') {
+			//Had to use some chatgpt but who cares if it works
+
+            // Helper object for tweening window size
+                var windowX = {x: Application.current.window.x};
+
+		        FlxTween.tween(windowX, {x: value}, duration, {ease: LuaUtils.getTweenEaseByString(ease),
+                    onUpdate: function(tween) {
+                        // Update the window's width and height during the tween
+                    Application.current.window.x = Std.int(windowX.x);
+            },
+        });
+		});
+		Lua_helper.add_callback(lua, "doWindowTweenY", function(value:Dynamic, duration:Float, ?ease:String = 'linear') {
+			//Had to use some chatgpt but who cares if it works
+
+            // Helper object for tweening window size
+                var windowY = {y: Application.current.window.y};
+
+		        FlxTween.tween(windowY, {y: value}, duration, {ease: LuaUtils.getTweenEaseByString(ease),
+                    onUpdate: function(tween) {
+                        // Update the window's width and height during the tween
+                    Application.current.window.y = Std.int(windowY.y);
+            },
+        });
+		});
+		Lua_helper.add_callback(lua, "doWindowTweenWidth", function(value:Dynamic, duration:Float, ?ease:String = 'linear') {
+			//Had to use some chatgpt but who cares if it works
+
+            // Helper object for tweening window size
+                var windowSizeWidth = {w: Application.current.window.width};
+
+		        FlxTween.tween(windowSizeWidth, {w: value}, duration, {ease: LuaUtils.getTweenEaseByString(ease),
+                    onUpdate: function(tween) {
+                        // Update the window's width and height during the tween
+                    Application.current.window.width = Std.int(windowSizeWidth.w);
+            },
+        });
+		});
+		Lua_helper.add_callback(lua, "doWindowTweenHeight", function(value:Dynamic, duration:Float, ?ease:String = 'linear') {
+			//Had to use some chatgpt but who cares if it works
+
+            // Helper object for tweening window size
+                var windowSizeHeight = {h: Application.current.window.height};
+
+		        FlxTween.tween(windowSizeHeight, {h: value}, duration, {ease: LuaUtils.getTweenEaseByString(ease),
+                    onUpdate: function(tween) {
+                        // Update the window's width and height during the tween
+                    Application.current.window.height = Std.int(windowSizeHeight.h);
+            },
+        });
 		});
 		Lua_helper.add_callback(lua, "mouseClicked", function(?button:String = 'left') {
 			var click:Bool = FlxG.mouse.justPressed;
